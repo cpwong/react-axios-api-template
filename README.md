@@ -75,3 +75,28 @@ npx json-server --port 3300 --watch data.json
 - Create Cancel button to clear form 
 > `ViewContactList.js`
 - Create Edit button and `props.editItem` as `onClick` handler
+
+## Building React + Axios with API Key
+
+- Create a .env.local file with the content:
+ `REACT_APP_API_KEY=<your_own_api_key>`
+- Add `.env.local` to `.gitignore` to exclude the secret api key file when you commit to Github
+
+> WARNING: 
+  - NOT RECOMMENDED for use in production code
+  - API key will still be visible in compiled code
+  - DO NOT check the .env.local file into Github repository
+
+```js
+ export const API2 = axios.create({
+   baseURL:'https://mboum-finance.p.rapidapi.com',
+   headers: {
+     'x-rapidapi-host': 'mboum-finance.p.rapidapi.com',
+     'x-rapidapi-key': process.env.REACT_APP_API_KEY
+   }    
+ })
+```
+
+Run `npm start` after adding/changing API key
+
+
